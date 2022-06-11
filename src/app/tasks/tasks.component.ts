@@ -29,10 +29,18 @@ export class TasksComponent implements OnInit {
    }
 
    public add():void{
+
+    let spChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let taskAdd = this.listaForm.controls["task"].value;
+
+    if( taskAdd == null || taskAdd == "" ){
+      return;
+    }else if (spChars.test(taskAdd)) {
+      return;
+    }
+
     this.listTarea.push(this.listaForm.value);
     this.listaForm.controls["task"].reset();
-    //this.listaForm.reset();
-    console.log(this.listTarea);
   }
 
   hide(event: any, element: any){
@@ -52,6 +60,18 @@ export class TasksComponent implements OnInit {
         this.listTarea.splice(index,1);
       }
     });
+  }
+
+  validate(event: { keyCode: number; preventDefault: () => void; }) {
+
+    var validate = String.fromCharCode(event.keyCode);
+
+    if (/[a-zA-Z0-9]/.test(validate)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
   }
 
   ngOnInit(): void {

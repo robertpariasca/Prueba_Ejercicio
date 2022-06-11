@@ -9,7 +9,7 @@
             </div>
             <div class="form-row">
               <div class="col-4">
-                <input type="text" formControlName="task" class="form-control" title="task" (keyup.enter)="add()">
+                <input type="text" formControlName="task" class="form-control" title="task" (keyup.enter)="add()" (keypress)="validate($event)">
               </div>
             </div>
           </div>

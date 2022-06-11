@@ -1,0 +1,50 @@
+<div class="container " role="main">
+  <div class="card p-5">
+    <form [formGroup]="listaForm">
+      <div>
+        <div class="form-row">
+          <div>
+            <div class="form-group">
+              <label>Agregar Tarea</label>
+            </div>
+            <div class="form-row">
+              <div class="col-4">
+                <input type="text" formControlName="task" class="form-control" title="task" (keyup.enter)="add()">
+              </div>
+            </div>
+          </div>
+          <div class="form-row mt-4">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-primary" (click)="add()">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="mt-4 ">
+      <table class="table table-bordered w-50">
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>Tarea</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listTarea">
+            <td class="col-1  center">
+              <input type="checkbox" [checked]="item.checked" (change)="hide($event, item)" title="checked">
+            </td>
+            <td class="col-10">
+              {{item.task}}
+            </td>
+            <td class="col-1 " >
+              <button *ngIf="!item.checked" type="button" class="btn btn-danger" (click)="delete(item)">Quitar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
